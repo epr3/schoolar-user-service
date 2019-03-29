@@ -12,8 +12,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 import testRoutes from './routes/test';
-import questionRoutes from './routes/question';
-import answerRoutes from './routes/answer';
 import errorMiddleware from './middlewares/errorMiddleware';
 
 const app = express();
@@ -31,8 +29,6 @@ const dir = path.join(__dirname, '..', 'uploads');
 app.use(express.static(dir));
 
 app.use(testRoutes);
-app.use(answerRoutes);
-app.use(questionRoutes);
 
 // ALWAYS USE ERROR MIDDLEWARE LAST !!!!
 app.use(errorMiddleware);
