@@ -1,13 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Admin {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
   @Column()
-  public description: string;
+  public name: string;
 
   @Column()
-  public imagePath: string;
+  public userId: string;
 }
