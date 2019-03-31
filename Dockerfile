@@ -1,13 +1,10 @@
 FROM node:11
 
-WORKDIR /app
+COPY . /app
 
-COPY package.json package.json
+WORKDIR /app
 
 RUN npm install
 
-COPY . .
+RUN npm run db:migrate
 
-EXPOSE 3000
-
-CMD [ "npm", "run dev" ]

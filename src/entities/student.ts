@@ -14,7 +14,7 @@ export class Student {
   @Column()
   public telephone: string;
 
-  @Column()
+  @Column({ nullable: true })
   public groupId: string;
 
   @Column()

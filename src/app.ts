@@ -3,7 +3,7 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as methodOverride from 'method-override';
 import * as morgan from 'morgan';
-import * as passport from 'passport';
+// import * as passport from 'passport';
 import * as path from 'path';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
@@ -18,7 +18,7 @@ import errorMiddleware from './middlewares/errorMiddleware';
 
 const app = express();
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 app.use(methodOverride());
 app.use(cors());

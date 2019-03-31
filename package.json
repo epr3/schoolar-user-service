@@ -4,13 +4,13 @@
    "description": "",
    "main": "./dist/app.js",
    "scripts": {
-      "start": "ts-node src/app.ts",
-      "dev": "cross-env NODE_ENV=DEV nodemon",
-      "db:init": "ts-node ./node_modules/.bin/typeorm migration:generate -n CreateDatabase",
-      "db:migrate": "ts-node ./node_modules/.bin/typeorm migration:run",
-      "test:unit": "cross-env NODE_ENV=TEST jest ./tests/unit",
-      "test:e2e": "cross-env NODE_ENV=TEST jest --runInBand ./tests/integration",
-      "test:all": "cross-env NODE_ENV=TEST jest --runInBand --coverage"
+      "start": "./node_modules/.bin/ts-node src/app.ts",
+      "dev": "./node_modules/.bin/cross-env NODE_ENV=DEV ./node_modules/.bin/nodemon",
+      "db:init": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -n CreateDatabase",
+      "db:migrate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run",
+      "test:unit": "./node_modules/.bin/cross-env NODE_ENV=TEST ./node_modules/.bin/jest ./tests/unit",
+      "test:e2e": "./node_modules/.bin/cross-env NODE_ENV=TEST ./node_modules/.bin/jest --runInBand ./tests/integration",
+      "test:all": "./node_modules/.bin/cross-env NODE_ENV=TEST ./node_modules/.bin/jest --runInBand --coverage"
    },
    "dependencies": {
       "@types/yup": "^0.26.12",
@@ -24,6 +24,9 @@
       "morgan": "^1.9.1",
       "multer": "^1.4.1",
       "mysql2": "^1.6.4",
+      "passport": "^0.4.0",
+      "passport-jwt": "^4.0.0",
+      "passport-local": "^1.0.0",
       "reflect-metadata": "^0.1.10",
       "sqlite3": "^4.0.4",
       "typeorm": "0.2.15",

@@ -8,7 +8,7 @@ const router = Router();
 const studentSchema = yup.object().shape({
   name: yup.string().required(),
   surname: yup.string().required(),
-  groupId: yup.string().required(),
+  groupId: yup.string(),
   telephone: yup.string().required(),
   userId: yup.string().required()
 });
