@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "user_service",
+      "script": "./src/app.ts",
+      "watch": true
+    }
+  ]
+}
