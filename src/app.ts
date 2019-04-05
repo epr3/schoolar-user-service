@@ -34,6 +34,10 @@ app.use(adminRoutes);
 app.use(studentRoutes);
 app.use(professorRoutes);
 
+app.get('/healthz', (req: express.Request, res: express.Response) => {
+  res.status(200).send('OK');
+});
+
 // ALWAYS USE ERROR MIDDLEWARE LAST !!!!
 app.use(errorMiddleware);
 
