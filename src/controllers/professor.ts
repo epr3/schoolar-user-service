@@ -5,7 +5,11 @@ import { Response, Request, NextFunction } from 'express';
 export default {
   async getProfessors(req: Request, res: Response, next: NextFunction) {
     try {
-      const professors = await getRepository(Professor).find();
+      const professors = await getRepository(Professor).find({
+        where: {
+          userId: req.query.userId
+        }
+      });
       res.status(200).send(professors);
     } catch (e) {
       next(e);

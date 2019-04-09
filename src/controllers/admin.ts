@@ -5,7 +5,11 @@ import { Response, Request, NextFunction } from 'express';
 export default {
   async getAdmins(req: Request, res: Response, next: NextFunction) {
     try {
-      const admins = await getRepository(Admin).find();
+      const admins = await getRepository(Admin).find({
+        where: {
+          userId: req.query.userId
+        }
+      });
       res.status(200).send(admins);
     } catch (e) {
       next(e);
