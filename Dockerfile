@@ -5,8 +5,9 @@ WORKDIR /usr/src/app
 RUN pm2 install typescript
 
 COPY package*.json ./
+
 RUN npm install
+
+ADD . .
+
 RUN npm run db:migrate
-
-COPY . .
-

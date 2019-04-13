@@ -11,7 +11,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-import adminRoutes from './routes/admin';
 import studentRoutes from './routes/student';
 import professorRoutes from './routes/professor';
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -30,7 +29,6 @@ app.use(bodyParser.json());
 const dir = path.join(__dirname, '..', 'uploads');
 app.use(express.static(dir));
 
-app.use(adminRoutes);
 app.use(studentRoutes);
 app.use(professorRoutes);
 

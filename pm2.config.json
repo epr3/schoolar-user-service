@@ -3,7 +3,17 @@
     {
       "name": "user_service",
       "script": "./src/app.ts",
-      "watch": true
+      "watch": "./src"
+    },
+    {
+      "name": "user_service_redis_dispatcher",
+      "script": "./workers/redis_dispatcher.ts",
+      "watch": "./workers"
+    },
+    {
+      "name": "user_service_workers",
+      "script": "./workers/boot_workers.ts",
+      "watch": "./workers"
     }
   ]
 }

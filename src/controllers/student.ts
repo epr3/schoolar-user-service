@@ -29,6 +29,7 @@ export default {
       const response = await getRepository(Student).save(student);
       res.status(200).send(response);
     } catch (e) {
+      console.log(e);
       next(e);
     }
   },
