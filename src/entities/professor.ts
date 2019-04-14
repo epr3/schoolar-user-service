@@ -17,6 +17,6 @@ export class Professor {
   @Column()
   public telephone: string;
 
-  @Column()
+  @Column({ unique: true })
   public userId: string;
 }

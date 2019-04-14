@@ -17,6 +17,6 @@ export class Student {
   @Column({ nullable: true })
   public groupId: string;
 
-  @Column()
+  @Column({ unique: true })
   public userId: string;
 }
