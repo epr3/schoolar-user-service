@@ -8,6 +8,7 @@
     "tslint-plugin-prettier"
   ],
   "rules": {
+    "interface-name": false,
     "no-any": false,
     "object-literal-sort-keys": false,
     "ordered-imports": false,

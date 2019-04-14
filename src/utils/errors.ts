@@ -18,3 +18,6 @@ export const UNPROCESSABLE_ENTITY = (message: string) => {
 export const FORBIDDEN = () => {
   return new APIError('Forbidden', 403);
 };
+export const UNAUTHORIZED = () => {
+  return new APIError('Unauthorized', 401);
+}

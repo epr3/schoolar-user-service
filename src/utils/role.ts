@@ -1,4 +1,5 @@
 export default {
   ADMIN: 'ADMIN',
-  CLIENT: 'CLIENT'
+  STUDENT: 'STUDENT',
+  PROFESSOR: 'PROFESSOR'
 };
