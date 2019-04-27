@@ -15,9 +15,10 @@ interface JWT {
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const auth = req.header('Authorization');
+    const auth = req.header('Authorization').split('JWT ')[1];
     const jwt = verify(auth, process.env.JWT_SECRET) as JWT;
     req.user = { ...jwt.context };
+    next();
   } catch (e) {
     next(UNAUTHORIZED());
   }
