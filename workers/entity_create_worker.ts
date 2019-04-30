@@ -11,6 +11,8 @@ const queue = kue.createQueue({
   }
 });
 
+queue.setMaxListeners(100);
+
 const createStudent = async (job: Job, done: DoneCallback) => {
   try {
     const student = await getRepository(Student).findOne({
@@ -42,10 +44,18 @@ const createProfessor = async (job: Job, done: DoneCallback) => {
 };
 
 export default () => {
-  queue.process('user.student.create', 5, async (job: Job, done: DoneCallback) => {
-    await createStudent(job, done);
-  });
-  queue.process('user.professor.create', 5, async (job: Job, done: DoneCallback) => {
-    await createProfessor(job, done);
-  });
+  queue.process(
+    'user.student.create',
+    5,
+    async (job: Job, done: DoneCallback) => {
+      await createStudent(job, done);
+    }
+  );
+  queue.process(
+    'user.professor.create',
+    5,
+    async (job: Job, done: DoneCallback) => {
+      await createProfessor(job, done);
+    }
+  );
 };

@@ -11,6 +11,8 @@ const queue = kue.createQueue({
   }
 });
 
+queue.setMaxListeners(100);
+
 const deleteStudent = async (job: Job, done: DoneCallback) => {
   try {
     await getRepository(Student).delete({
@@ -34,10 +36,18 @@ const deleteProfessor = async (job: Job, done: DoneCallback) => {
 };
 
 export default () => {
-  queue.process('user.student.delete', 5, async (job: Job, done: DoneCallback) => {
-    await deleteStudent(job, done);
-  });
-  queue.process('user.professor.delete', 5, async (job: Job, done: DoneCallback) => {
-    await deleteProfessor(job, done);
-  });
+  queue.process(
+    'user.student.delete',
+    5,
+    async (job: Job, done: DoneCallback) => {
+      await deleteStudent(job, done);
+    }
+  );
+  queue.process(
+    'user.professor.delete',
+    5,
+    async (job: Job, done: DoneCallback) => {
+      await deleteProfessor(job, done);
+    }
+  );
 };

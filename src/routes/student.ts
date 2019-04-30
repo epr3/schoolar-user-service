@@ -19,7 +19,6 @@ const studentSchema = yup.object().shape({
 router.get(
   '/students',
   jwtMiddleware,
-  roleMiddleware([role.ADMIN]),
   studentController.getStudents
 );
 router.get(

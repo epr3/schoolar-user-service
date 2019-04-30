@@ -8,6 +8,8 @@ const queue = kue.createQueue({
   }
 });
 
+queue.setMaxListeners(100);
+
 const redis = new Redis(6379, 'redis');
 
 redis.on('pmessage', (pattern: string, channel: string, message: string) => {
