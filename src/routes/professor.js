@@ -1,10 +1,10 @@
-import { Router } from 'express';
-import * as yup from 'yup';
-import role from '../utils/role';
-import roleMiddleware from '../middlewares/roleMiddleware';
-import validationMiddleware from '../middlewares/validationMiddleware';
-import jwtMiddleware from '../middlewares/jwtMiddleware';
-import professorController from '../controllers/professor';
+const { Router } = require('express');
+const yup = require('yup');
+const role = require('../utils/role');
+const jwtMiddleware = require('../middlewares/jwtMiddleware');
+const roleMiddleware = require('../middlewares/roleMiddleware');
+const validationMiddleware = require('../middlewares/validationMiddleware');
+const professorController = require('../controllers/professor');
 
 const router = Router();
 
@@ -16,11 +16,7 @@ const professorSchema = yup.object().shape({
   userId: yup.string().required()
 });
 
-router.get(
-  '/professors',
-  jwtMiddleware,
-  professorController.getProfessors
-);
+router.get('/professors', jwtMiddleware, professorController.getProfessors);
 router.get(
   '/professors/:id',
   jwtMiddleware,
@@ -48,4 +44,4 @@ router.delete(
   professorController.removeProfessor
 );
 
-export default router;
+module.exports = router;

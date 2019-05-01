@@ -2,17 +2,17 @@
   "apps": [
     {
       "name": "user_service",
-      "script": "./src/app.ts",
+      "script": "./src/app.js",
       "watch": "./src"
     },
     {
       "name": "user_service_redis_dispatcher",
-      "script": "./workers/redis_dispatcher.ts",
+      "script": "./workers/redis_dispatcher.js",
       "watch": "./workers"
     },
     {
       "name": "user_service_workers",
-      "script": "./workers/boot_workers.ts",
+      "script": "./workers/boot_workers.js",
       "watch": "./workers"
     }
   ]

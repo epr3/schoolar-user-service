@@ -1,5 +1,5 @@
-import Redis = require('ioredis');
-import kue = require('kue');
+const Redis = require('ioredis');
+const kue = require('kue');
 
 const queue = kue.createQueue({
   redis: {
@@ -12,7 +12,7 @@ queue.setMaxListeners(100);
 
 const redis = new Redis(6379, 'redis');
 
-redis.on('pmessage', (pattern: string, channel: string, message: string) => {
+redis.on('pmessage', (pattern, channel, message) => {
   console.log(
     `Received the following message from ${channel}: ${message} on ${pattern}`
   );
