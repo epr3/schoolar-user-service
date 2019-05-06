@@ -2,6 +2,7 @@ const Redis = require('ioredis');
 const kue = require('kue');
 
 const queue = kue.createQueue({
+  prefix: 'user',
   redis: {
     host: 'redis',
     port: 6379
@@ -19,7 +20,7 @@ redis.on('pmessage', (pattern, channel, message) => {
   switch (channel) {
     case 'user.student.delete':
       queue
-        .create(channel, { userId: message })
+        .create(channel, { id: message })
         .removeOnComplete(true)
         .attempts(5)
         .backoff({ delay: 60 * 1000, type: 'exponential' })
@@ -27,7 +28,7 @@ redis.on('pmessage', (pattern, channel, message) => {
       break;
     case 'user.professor.delete':
       queue
-        .create(channel, { userId: message })
+        .create(channel, { id: message })
         .removeOnComplete(true)
         .attempts(5)
         .backoff({ delay: 60 * 1000, type: 'exponential' })

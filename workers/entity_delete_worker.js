@@ -2,6 +2,7 @@ const { Professor, Student } = require('../src/models');
 const kue = require('kue');
 
 const queue = kue.createQueue({
+  prefix: 'user',
   redis: {
     host: 'redis',
     port: 6379
@@ -12,9 +13,7 @@ queue.setMaxListeners(100);
 
 const deleteStudent = async (job, done) => {
   try {
-    await Student.forge({ id: req.params.id })
-      .fetch({ require: true })
-      .destroy();
+    await Student.forge({ userId: job.data.id }).destroy();
     return done();
   } catch (e) {
     return done(new Error(JSON.stringify(e)));
@@ -23,9 +22,7 @@ const deleteStudent = async (job, done) => {
 
 const deleteProfessor = async (job, done) => {
   try {
-    await Professor.forge({ id: req.params.id })
-      .fetch({ require: true })
-      .destroy();
+    await Professor.forge({ userId: job.data.id }).destroy();
     return done();
   } catch (e) {
     return done(new Error(JSON.stringify(e)));

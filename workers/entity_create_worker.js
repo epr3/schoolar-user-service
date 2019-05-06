@@ -2,6 +2,7 @@ const { Professor, Student } = require('../src/models');
 const kue = require('kue');
 
 const queue = kue.createQueue({
+  prefix: 'user',
   redis: {
     host: 'redis',
     port: 6379
