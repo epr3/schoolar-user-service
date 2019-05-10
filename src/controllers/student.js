@@ -39,9 +39,10 @@ module.exports = {
   },
   async removeStudent(req, res, next) {
     try {
-      await Student.forge({ id: req.params.id })
-        .fetch({ require: true })
-        .destroy();
+      const student = await Student.forge({ id: req.params.id }).fetch({
+        require: true
+      });
+      await student.destroy();
       res.sendStatus(204);
     } catch (e) {
       next(e);
@@ -49,10 +50,11 @@ module.exports = {
   },
   async updateStudent(req, res, next) {
     try {
-      const student = await Student.forge({ id: req.params.id })
-        .fetch({ require: true })
-        .save({ ...req.body });
-      res.status(200).send(student.toJSON());
+      const student = await Student.forge({ id: req.params.id }).fetch({
+        require: true
+      });
+      const studentObj = await student.save({ ...req.body });
+      res.status(200).send(studentObj.toJSON());
     } catch (e) {
       next(e);
     }
