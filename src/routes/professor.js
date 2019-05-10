@@ -17,12 +17,7 @@ const professorSchema = yup.object().shape({
 });
 
 router.get('/professors', jwtMiddleware, professorController.getProfessors);
-router.get(
-  '/professors/:id',
-  jwtMiddleware,
-  roleMiddleware([role.ADMIN]),
-  professorController.getProfessor
-);
+router.get('/professors/:id', jwtMiddleware, professorController.getProfessor);
 router.post(
   '/professors',
   validationMiddleware(professorSchema),

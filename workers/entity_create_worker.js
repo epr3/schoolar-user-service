@@ -14,7 +14,7 @@ queue.setMaxListeners(100);
 const createStudent = async (job, done) => {
   try {
     const student = await Student.forge({
-      userId: req.query.userId
+      userId: job.data.userId
     }).fetch({ require: true });
     if (!student) {
       await Student.forge({ ...job.data }).save();
@@ -28,7 +28,7 @@ const createStudent = async (job, done) => {
 const createProfessor = async (job, done) => {
   try {
     const professor = await Professor.forge({
-      userId: req.query.userId
+      userId: job.data.userId
     }).fetch({ require: true });
     if (!professor) {
       await Professor.forge({ ...job.data }).save();

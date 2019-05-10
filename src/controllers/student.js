@@ -8,11 +8,14 @@ module.exports = {
       };
       let students = [];
       if (query.userId) {
-        students = await Student.forge({
-          userId: req.query.userId
-        }).fetchAll();
+        students = await Student.forge()
+          .where({
+            userId: query.userId
+          })
+          .fetchAll();
+      } else {
+        students = await Student.forge().fetchAll();
       }
-      students = await Student.forge().fetchAll();
       res.status(200).send(students.toJSON());
     } catch (e) {
       next(e);

@@ -8,11 +8,14 @@ module.exports = {
       };
       let professors = [];
       if (query.userId) {
-        professors = await Professor.forge({
-          userId: req.query.userId
-        }).fetchAll();
+        professors = await Professor.forge()
+          .where({
+            userId: query.userId
+          })
+          .fetchAll();
+      } else {
+        professors = await Professor.forge().fetchAll();
       }
-      professors = await Professor.forge().fetchAll();
       res.status(200).send(professors.toJSON());
     } catch (e) {
       console.log(e);
@@ -40,9 +43,10 @@ module.exports = {
   },
   async removeProfessor(req, res, next) {
     try {
-      const professor = await Professor.forge({ id: req.params.id })
-        .fetch({ require: true })
-        await professor.destroy();
+      const professor = await Professor.forge({ id: req.params.id }).fetch({
+        require: true
+      });
+      await professor.destroy();
       res.sendStatus(204);
     } catch (e) {
       next(e);

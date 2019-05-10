@@ -13,7 +13,8 @@ queue.setMaxListeners(100);
 
 const deleteStudent = async (job, done) => {
   try {
-    await Student.forge({ userId: job.data.id }).destroy();
+    const student = await Student.forge({ userId: job.data.id });
+    await student.destroy();
     return done();
   } catch (e) {
     return done(new Error(JSON.stringify(e)));
@@ -22,7 +23,8 @@ const deleteStudent = async (job, done) => {
 
 const deleteProfessor = async (job, done) => {
   try {
-    await Professor.forge({ userId: job.data.id }).destroy();
+    const professor = await Professor.forge({ userId: job.data.id });
+    await professor.destroy();
     return done();
   } catch (e) {
     return done(new Error(JSON.stringify(e)));
