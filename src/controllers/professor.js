@@ -15,6 +15,7 @@ module.exports = {
       professors = await Professor.forge().fetchAll();
       res.status(200).send(professors.toJSON());
     } catch (e) {
+      console.log(e);
       next(e);
     }
   },
@@ -39,9 +40,9 @@ module.exports = {
   },
   async removeProfessor(req, res, next) {
     try {
-      await Professor.forge({ id: req.params.id })
+      const professor = await Professor.forge({ id: req.params.id })
         .fetch({ require: true })
-        .destroy();
+        await professor.destroy();
       res.sendStatus(204);
     } catch (e) {
       next(e);
@@ -49,11 +50,14 @@ module.exports = {
   },
   async updateProfessor(req, res, next) {
     try {
-      const professor = await Professor.forge({ id: req.params.id })
-        .fetch({ require: true })
-        .save({ ...req.body });
-      res.status(200).send(professor.toJSON());
+      delete req.body.id;
+      const professor = await Professor.forge({ id: req.params.id }).fetch({
+        require: true
+      });
+      const updatedProfessor = await professor.save({ ...req.body });
+      res.status(200).send(updatedProfessor.toJSON());
     } catch (e) {
+      console.log(e);
       next(e);
     }
   }
