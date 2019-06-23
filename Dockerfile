@@ -13,3 +13,5 @@ RUN npm install
 ADD . .
 
 RUN npm run db:migrate
+
+EXPOSE 3000
