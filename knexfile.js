@@ -2,16 +2,20 @@
 
 module.exports = {
   development: {
-    client: 'sqlite3',
+    client: 'mysql',
     useNullAsDefault: true,
     debug: true,
     connection: {
-      filename: '/database/db.sqlite'
-    },
-    pool: {
-      afterCreate: (conn, cb) => {
-        conn.run('PRAGMA foreign_keys = ON', cb);
-      }
+      host: 'db',
+      user: 'root',
+      password: '',
+      database: 'users'
+      // filename: '/database/db.sqlite'
     }
+    // pool: {
+    //   afterCreate: (conn, cb) => {
+    //     conn.run('PRAGMA foreign_keys = ON', cb);
+    //   }
+    // }
   }
 };
